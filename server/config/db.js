@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+require('dotenv').config({path: `.env.${NODE_ENV}`});
 
 const conectarDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/cafe', {
+        await mongoose.connect(process.env.DB_MONGO, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
